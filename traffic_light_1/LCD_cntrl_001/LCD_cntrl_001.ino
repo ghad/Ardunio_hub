@@ -42,15 +42,18 @@
 
 // initialize the library with the numbers of the interface pins
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+int button_1 = 13;
 
 void setup() {
   // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
   // Print a message to the LCD.
   //lcd.print("hello, kathi!");
-    lcd.print("alter stinker  ");
-    lcd.setCursor(0, 1);
-    lcd.print("schatz");
+  lcd.print("alter stinker  ");
+  lcd.setCursor(0, 1);
+  lcd.print("schatz");
+  //mach den button
+  pinMode(button_1, INPUT);
 }
 
 void loop() {
@@ -59,4 +62,18 @@ void loop() {
   lcd.setCursor(8, 1);
   // print the number of seconds since reset:
   lcd.print(millis());
+
+  //set button to change display
+  int button_1_val = digitalRead(button_1);
+
+  if (button_1_val == HIGH) {
+    lcd.setCursor(0, 0);
+    lcd.print("lieber netter   ");
+  }
+  
+  if (button_1_val == LOW) {
+    lcd.setCursor(0, 0);
+    lcd.print("alter stinker  ");
+  }
 }
+
